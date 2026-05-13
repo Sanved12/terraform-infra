@@ -24,13 +24,4 @@ variable "alb_conf" {
       health_check_path = string
     })
   })
-  default = {
-    enable_deletion_protection = false
-    additional_tags            = {}
-    target_group = {
-      port              = 80
-      protocol          = "HTTP"
-      health_check_path = "/health"
-    }
-  }
 }

@@ -1,3 +1,7 @@
+variable "region" {
+  description = "AWS region to deploy the resources in"
+}
+
 variable "environment" {
   description = "Environment name (e.g. poc, dev, staging, prod)"
   type        = string

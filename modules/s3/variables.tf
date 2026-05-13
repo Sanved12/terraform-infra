@@ -1,3 +1,5 @@
+//============= All the variables will be populated by the calling function values =============//
+
 variable "environment" {
   description = "Environment name"
   type        = string

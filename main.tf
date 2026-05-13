@@ -12,6 +12,7 @@ module "s3" {
 //=======================================================================================================\\
 module "vpc" {
   source      = "./modules/vpc"
+  region      = var.region
   environment = var.environment
   vpc_conf    = var.vpc_conf
 }

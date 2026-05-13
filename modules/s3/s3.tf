@@ -1,6 +1,13 @@
+//=======================================================================================================\\
+//                                         S3 State Backend Bucket                                       \\
+//=======================================================================================================\\
 resource "aws_s3_bucket" "state" {
   bucket        = var.s3_conf.bucket_name
   force_destroy = false
+
+  lifecycle {
+    prevent_destroy = true
+  }
 
   tags = {
     Name        = var.s3_conf.bucket_name
@@ -8,6 +15,9 @@ resource "aws_s3_bucket" "state" {
   }
 }
 
+//=======================================================================================================\\
+//                                         S3 Bucket Versioning                                          \\
+//=======================================================================================================\\
 resource "aws_s3_bucket_versioning" "state" {
   bucket = aws_s3_bucket.state.id
   versioning_configuration {
@@ -15,6 +25,9 @@ resource "aws_s3_bucket_versioning" "state" {
   }
 }
 
+//=======================================================================================================\\
+//                                    S3 Server Side Encryption                                          \\
+//=======================================================================================================\\
 resource "aws_s3_bucket_server_side_encryption_configuration" "state" {
   bucket = aws_s3_bucket.state.id
   rule {
@@ -24,6 +37,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "state" {
   }
 }
 
+//=======================================================================================================\\
+//                                      S3 Public Access Block                                           \\
+//=======================================================================================================\\
 resource "aws_s3_bucket_public_access_block" "state" {
   bucket                  = aws_s3_bucket.state.id
   block_public_acls       = true
@@ -32,6 +48,9 @@ resource "aws_s3_bucket_public_access_block" "state" {
   restrict_public_buckets = true
 }
 
+//=======================================================================================================\\
+//                                      DynamoDB Lock Table                                              \\
+//=======================================================================================================\\
 resource "aws_dynamodb_table" "lock" {
   name         = var.s3_conf.dynamodb_table
   billing_mode = "PAY_PER_REQUEST"

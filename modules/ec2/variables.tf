@@ -37,16 +37,4 @@ variable "ec2_conf" {
       size_gb = number
     })
   })
-  default = {
-    ami_id          = ""
-    instance_type   = "t3.micro"
-    instance_count  = 2
-    app_port        = 80
-    public_key      = ""
-    additional_tags = {}
-    root_volume = {
-      type    = "gp3"
-      size_gb = 20
-    }
-  }
 }
