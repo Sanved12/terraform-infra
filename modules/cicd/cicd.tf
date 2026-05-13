@@ -129,7 +129,7 @@ resource "aws_iam_role_policy" "codepipeline" {
       {
         Effect   = "Allow"
         Action   = ["codestar-connections:UseConnection"]
-        Resource = aws_codestarconnections_connection.github.arn
+        Resource = local.codestar_connection_arn
       }
     ]
   })
@@ -179,15 +179,10 @@ resource "aws_codebuild_project" "terraform" {
 }
 
 # -----------------------------------------------------------------------
-# CodeStar Connection — GitHub v2 (must be manually activated in AWS Console)
+# CodeStar Connection — provided externally (activated in AWS Console)
 # -----------------------------------------------------------------------
-resource "aws_codestarconnections_connection" "github" {
-  name          = "${var.environment}-github-connection"
-  provider_type = "GitHub"
-
-  tags = {
-    Environment = var.environment
-  }
+locals {
+  codestar_connection_arn = var.codestar_connection_arn
 }
 
 # -----------------------------------------------------------------------
@@ -227,7 +222,7 @@ resource "aws_codepipeline" "terraform" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        ConnectionArn    = aws_codestarconnections_connection.github.arn
+        ConnectionArn    = local.codestar_connection_arn
         FullRepositoryId = "${var.github_owner}/${var.github_repo}"
         BranchName       = var.github_branch
         DetectChanges    = "false"

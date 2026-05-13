@@ -119,3 +119,8 @@ variable "pipeline_bucket" {
   description = "S3 bucket name for CodePipeline artifacts (must be globally unique)"
   type        = string
 }
+
+variable "codestar_connection_arn" {
+  description = "CodeStar connection ARN for GitHub (must be pre-created and activated)"
+  type        = string
+}

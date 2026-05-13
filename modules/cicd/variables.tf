@@ -24,6 +24,11 @@ variable "pipeline_bucket" {
   type        = string
 }
 
+variable "codestar_connection_arn" {
+  description = "Existing CodeStar connection ARN to use for GitHub source"
+  type        = string
+}
+
 variable "tf_version" {
   description = "Terraform version to install in CodeBuild"
   type        = string

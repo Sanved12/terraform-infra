@@ -48,10 +48,11 @@ module "ec2" {
 //                                         CI/CD Module                                                  \\
 //=======================================================================================================\\
 module "cicd" {
-  source          = "./modules/cicd"
-  environment     = var.environment
-  github_owner    = var.github_owner
-  github_repo     = var.github_repo
-  github_branch   = var.github_branch
-  pipeline_bucket = var.pipeline_bucket
+  source                  = "./modules/cicd"
+  environment             = var.environment
+  github_owner            = var.github_owner
+  github_repo             = var.github_repo
+  github_branch           = var.github_branch
+  pipeline_bucket         = var.pipeline_bucket
+  codestar_connection_arn = var.codestar_connection_arn
 }

@@ -15,5 +15,5 @@ output "pipeline_artifact_bucket" {
 
 output "codestar_connection_arn" {
   description = "CodeStar connection ARN — must be manually activated in AWS Console before pipeline runs"
-  value       = aws_codestarconnections_connection.github.arn
+  value       = local.codestar_connection_arn
 }
