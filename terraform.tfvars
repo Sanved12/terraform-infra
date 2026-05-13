@@ -6,7 +6,7 @@ environment = "test"
 //                                       S3 State Backend Configuration                                  \\
 //=======================================================================================================\\
 s3_conf = {
-  bucket_name    = "sanved-bucket"
+  bucket_name    = "sanved-bucket_12"
   dynamodb_table = "sanved-bucket-locks"
 }
 
