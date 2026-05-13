@@ -1,0 +1,37 @@
+version: 0.2
+
+env:
+  variables:
+    TF_VERSION: "1.7.5"
+    TF_VAR_FILE: "terraform.tfvars"
+  parameter-store:
+    # Optional: pull secrets from SSM if needed
+
+phases:
+  install:
+    commands:
+      - cd /tmp
+      - curl -sSLo terraform.zip https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
+      - unzip -q terraform.zip
+      - mv terraform /usr/local/bin/
+      - terraform version
+
+  pre_build:
+    commands:
+      - cd $CODEBUILD_SRC_DIR
+      - terraform init -backend=true -input=false
+
+  build:
+    commands:
+      - terraform plan -var-file="$TF_VAR_FILE" -out=tfplan -input=false -no-color
+      - terraform apply -auto-approve -input=false tfplan
+
+  post_build:
+    commands:
+      - echo "Terraform apply complete"
+      - terraform output -no-color
+
+artifacts:
+  files:
+    - tfplan
+  discard-paths: yes
