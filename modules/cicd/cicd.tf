@@ -65,6 +65,11 @@ resource "aws_iam_role_policy" "codebuild" {
         Resource = "*"
       },
       {
+        Effect   = "Allow"
+        Action   = ["ssm:GetParameter"]
+        Resource = "arn:aws:ssm:*:*:parameter/terraform-infra/*"
+      },
+      {
         Effect = "Allow"
         Action = [
           "s3:GetObject",
