@@ -1,5 +1,5 @@
 //========== Common Global Variables ===========//
-region      = "ap-south-1"
+region      = "ap-south-1" # AWS region where the resources will be created
 environment = "test"
 
 //=======================================================================================================\\
@@ -13,7 +13,13 @@ s3_conf = {
 //=======================================================================================================\\
 //                                       VPC Configuration                                               \\
 //=======================================================================================================\\
+
+# VPC configuration — pass CIDR values for VPC and subnets.
+# The number of subnet CIDRs provided equals the number of subnets created in subsequent AZs of the selected region.
+
 vpc_conf = {
+
+  # VPC CIDR and tags
   vpc = {
     cidr_vpc = "10.0.0.0/16"
     additional_tags = {
@@ -21,6 +27,7 @@ vpc_conf = {
     }
   }
 
+  # NAT Gateway tags
   nat_gateway = {
     additional_tags = {
       Owner = "sanved"
@@ -28,6 +35,8 @@ vpc_conf = {
   }
 
   subnets = {
+
+    # Public subnets — one per AZ
     public_subnets = {
       name = "public-subnet"
       cidr = [
@@ -41,6 +50,7 @@ vpc_conf = {
       }
     }
 
+    # Private app subnets — one per AZ
     private_app_subnets = {
       name = "private-app-subnet"
       cidr = [
@@ -54,6 +64,7 @@ vpc_conf = {
       }
     }
 
+    # Private DB subnets — isolated, no route to internet
     private_db_subnets = {
       name = "private-db-subnet"
       cidr = [
@@ -72,6 +83,7 @@ vpc_conf = {
 //=======================================================================================================\\
 //                                       ALB Configuration                                               \\
 //=======================================================================================================\\
+
 alb_conf = {
   enable_deletion_protection = false
   additional_tags = {
@@ -87,8 +99,9 @@ alb_conf = {
 //=======================================================================================================\\
 //                                       EC2 Configuration                                               \\
 //=======================================================================================================\\
+
 ec2_conf = {
-  ami_id         = "ami-0f58b397bc5c1f2e8"  # Amazon Linux 2023 — ap-south-1
+  ami_id         = "ami-0f58b397bc5c1f2e8" # Amazon Linux 2023 — ap-south-1
   instance_type  = "t3.micro"
   instance_count = 2
   app_port       = 80
@@ -105,8 +118,9 @@ ec2_conf = {
 //=======================================================================================================\\
 //                                   CodePipeline Configuration                                          \\
 //=======================================================================================================\\
-github_owner    = "Sanved12"
-github_repo     = "terraform-infra"
-github_branch   = "main"
-pipeline_bucket = "sanved-pipeline-artifacts"
+
+github_owner            = "Sanved12"
+github_repo             = "terraform-infra"
+github_branch           = "main"
+pipeline_bucket         = "sanved-pipeline-artifacts"
 codestar_connection_arn = "arn:aws:codeconnections:us-east-1:168312023901:connection/170b7e94-c0e9-423c-a201-9386ccd5c857"
