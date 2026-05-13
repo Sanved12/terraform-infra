@@ -9,10 +9,7 @@
 crash.log
 crash.*.log
 
-# Exclude tfvars — contains secrets (oauth token, public key)
-# Commit terraform.tfvars.example instead
-*.tfvars
-*.tfvars.json
+# tfvars committed directly to repo
 
 # Windows Zone.Identifier metadata files
 *:Zone.Identifier

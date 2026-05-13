@@ -4,7 +4,6 @@ env:
   variables:
     TF_VERSION: "1.7.5"
     TF_VAR_FILE: "terraform.tfvars"
-    SSM_TFVARS_PATH: "/terraform-infra/terraform.tfvars"
 
 phases:
   install:
@@ -18,7 +17,6 @@ phases:
   pre_build:
     commands:
       - cd $CODEBUILD_SRC_DIR
-      - aws ssm get-parameter --name "$SSM_TFVARS_PATH" --with-decryption --query "Parameter.Value" --output text > "$TF_VAR_FILE"
       - terraform init -backend=true -input=false
 
   build:
