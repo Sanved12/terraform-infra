@@ -194,8 +194,21 @@ resource "aws_codestarconnections_connection" "github" {
 # CodePipeline
 # -----------------------------------------------------------------------
 resource "aws_codepipeline" "terraform" {
-  name     = "${var.environment}-terraform-pipeline"
-  role_arn = aws_iam_role.codepipeline.arn
+  name          = "${var.environment}-terraform-pipeline"
+  role_arn      = aws_iam_role.codepipeline.arn
+  pipeline_type = "V2"
+
+  trigger {
+    provider_type = "CodeStarSourceConnection"
+    git_configuration {
+      source_action_name = "GitHub_Source"
+      push {
+        branches {
+          includes = [var.github_branch]
+        }
+      }
+    }
+  }
 
   artifact_store {
     location = aws_s3_bucket.pipeline_artifacts.bucket
@@ -217,7 +230,7 @@ resource "aws_codepipeline" "terraform" {
         ConnectionArn    = aws_codestarconnections_connection.github.arn
         FullRepositoryId = "${var.github_owner}/${var.github_repo}"
         BranchName       = var.github_branch
-        DetectChanges    = "true"
+        DetectChanges    = "false"
       }
     }
   }
