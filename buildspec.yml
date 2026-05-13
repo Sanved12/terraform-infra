@@ -4,8 +4,6 @@ env:
   variables:
     TF_VERSION: "1.7.5"
     TF_VAR_FILE: "terraform.tfvars"
-  parameter-store:
-    # Optional: pull secrets from SSM if needed
 
 phases:
   install:
