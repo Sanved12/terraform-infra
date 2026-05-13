@@ -64,18 +64,19 @@ resource "aws_lb" "alb" {
 //                                         Target Group                                                  \\
 //=======================================================================================================\\
 resource "aws_lb_target_group" "tg" {
-  name     = "${var.environment}-tg"
-  port     = var.alb_conf.target_group.port
-  protocol = var.alb_conf.target_group.protocol
-  vpc_id   = var.vpc_id
+  name       = "${var.environment}-tg"
+  port       = var.alb_conf.target_group.port
+  protocol   = var.alb_conf.target_group.protocol
+  vpc_id     = var.vpc_id
+  slow_start = 120 # give instances 2 min after registration before health checks count
 
   health_check {
     enabled             = true
     path                = var.alb_conf.target_group.health_check_path
     port                = "traffic-port"
     protocol            = var.alb_conf.target_group.protocol
-    healthy_threshold   = 3
-    unhealthy_threshold = 3
+    healthy_threshold   = 2
+    unhealthy_threshold = 5
     timeout             = 5
     interval            = 30
     matcher             = "200-299"

@@ -68,12 +68,12 @@ resource "aws_instance" "app_servers" {
 
   user_data = base64encode(<<-EOF
     #!/bin/bash
-    yum update -y
-    yum install -y httpd
-    systemctl start httpd
-    systemctl enable httpd
+    apt-get update -y
+    apt-get install -y apache2
     echo "<h1>Hello from ${var.environment} - Instance ${count.index + 1}</h1>" > /var/www/html/index.html
     echo "OK" > /var/www/html/health
+    systemctl enable apache2
+    systemctl start apache2
   EOF
   )
 
