@@ -211,7 +211,7 @@ resource "aws_codepipeline" "terraform" {
   }
 
   stage {
-    name = "Codesource-GitHub"
+    name = "Source"
 
     action {
       name             = "GitHub_Source"
@@ -231,7 +231,7 @@ resource "aws_codepipeline" "terraform" {
   }
 
   stage {
-    name = "CodeBuild-Terraform"
+    name = "Terraform_Apply"
 
     action {
       name             = "Terraform_Build"
