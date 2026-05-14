@@ -123,13 +123,6 @@ resource "aws_codebuild_project" "terraform" {
 }
 
 # -----------------------------------------------------------------------
-# CodeStar Connection — provided externally (activated in AWS Console)
-# -----------------------------------------------------------------------
-locals {
-  codestar_connection_arn = var.codestar_connection_arn
-}
-
-# -----------------------------------------------------------------------
 # CodePipeline
 # -----------------------------------------------------------------------
 resource "aws_codepipeline" "terraform" {
@@ -166,7 +159,7 @@ resource "aws_codepipeline" "terraform" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        ConnectionArn    = local.codestar_connection_arn
+        ConnectionArn    = var.codestar_connection_arn
         FullRepositoryId = "${var.github_owner}/${var.github_repo}"
         BranchName       = var.github_branch
         DetectChanges    = "false"
