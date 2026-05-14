@@ -9,9 +9,8 @@
 crash.log
 crash.*.log
 
-# tfvars — may contain sensitive values
-terraform.tfvars
-*.tfvars
+# tfvars — add sensitive-only files here if needed
+# terraform.tfvars
 
 # Windows Zone.Identifier metadata files
 *:Zone.Identifier
