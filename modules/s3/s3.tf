@@ -3,11 +3,7 @@
 //=======================================================================================================\\
 resource "aws_s3_bucket" "state" {
   bucket        = var.s3_conf.bucket_name
-  force_destroy = false
-
-  lifecycle {
-    prevent_destroy = true
-  }
+  force_destroy = true
 
   tags = {
     Name        = var.s3_conf.bucket_name

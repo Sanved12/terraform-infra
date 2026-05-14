@@ -1,10 +1,5 @@
 version: 0.2
 
-env:
-  variables:
-    TF_VERSION: "1.7.5"
-    TF_VAR_FILE: "terraform.tfvars"
-
 phases:
   install:
     commands:
@@ -18,10 +13,11 @@ phases:
     commands:
       - cd $CODEBUILD_SRC_DIR
       - terraform init -backend=true -input=false
+      - terraform validate
 
   build:
     commands:
-      - terraform plan -var-file="$TF_VAR_FILE" -out=tfplan -input=false -no-color
+      - terraform plan -var-file="terraform.tfvars" -out=tfplan -input=false -no-color
       - terraform apply -auto-approve -input=false tfplan
 
   post_build:
