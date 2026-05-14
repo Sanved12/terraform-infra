@@ -101,9 +101,9 @@ alb_conf = {
 //=======================================================================================================\\
 
 ec2_conf = {
-  ami_id         = "ami-0f58b397bc5c1f2e8" # Ubuntu 22.04 LTS — ap-south-1
+  ami_id         = "ami-0f58b397bc5c1f2e8" # Amazon Linux 2023 — ap-south-1
   instance_type  = "t3.micro"
-  instance_count = 3
+  instance_count = 2
   app_port       = 80
   public_key     = ""
   additional_tags = {
@@ -124,3 +124,7 @@ github_repo             = "terraform-infra"
 github_branch           = "main"
 pipeline_bucket         = "sanved-pipeline-artifacts"
 codestar_connection_arn = "arn:aws:codeconnections:us-east-1:168312023901:connection/170b7e94-c0e9-423c-a201-9386ccd5c857"
+
+##hlooo
+##hskdk
+#3gdhuhjkdldio
