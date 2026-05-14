@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+    TF_VAR_FILE: "terraform.tfvars"
+
 phases:
   install:
     commands:
@@ -17,7 +21,7 @@ phases:
 
   build:
     commands:
-      - terraform plan -var-file="terraform.tfvars" -out=tfplan -input=false -no-color
+      - terraform plan -var-file="$TF_VAR_FILE" -out=tfplan -input=false -no-color
       - terraform apply -auto-approve -input=false tfplan
 
   post_build:
