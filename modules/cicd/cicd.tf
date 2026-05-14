@@ -2,7 +2,7 @@
 # S3 Bucket — CodePipeline artifact store
 # -----------------------------------------------------------------------
 resource "aws_s3_bucket" "pipeline_artifacts" {
-  bucket        = var.pipeline_bucket
+  bucket        = var.cicd_conf.pipeline_bucket
   force_destroy = true
 
   tags = {
@@ -100,7 +100,7 @@ resource "aws_codebuild_project" "terraform" {
 
     environment_variable {
       name  = "TF_VERSION"
-      value = var.tf_version
+      value = var.cicd_conf.tf_version
     }
   }
 
@@ -136,7 +136,7 @@ resource "aws_codepipeline" "terraform" {
       source_action_name = "GitHub_Source"
       push {
         branches {
-          includes = [var.github_branch]
+          includes = [var.cicd_conf.github_branch]
         }
       }
     }
@@ -159,9 +159,9 @@ resource "aws_codepipeline" "terraform" {
       output_artifacts = ["source_output"]
 
       configuration = {
-        ConnectionArn    = var.codestar_connection_arn
-        FullRepositoryId = "${var.github_owner}/${var.github_repo}"
-        BranchName       = var.github_branch
+        ConnectionArn    = var.cicd_conf.codestar_connection_arn
+        FullRepositoryId = "${var.cicd_conf.github_owner}/${var.cicd_conf.github_repo}"
+        BranchName       = var.cicd_conf.github_branch
         DetectChanges    = "false"
       }
     }

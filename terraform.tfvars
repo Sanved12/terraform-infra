@@ -119,11 +119,14 @@ ec2_conf = {
 //                                   CodePipeline Configuration                                          \\
 //=======================================================================================================\\
 
-github_owner            = "Sanved12"
-github_repo             = "terraform-infra"
-github_branch           = "main"
-pipeline_bucket         = "sanved-pipeline-artifacts"
-codestar_connection_arn = "arn:aws:codeconnections:us-east-1:168312023901:connection/170b7e94-c0e9-423c-a201-9386ccd5c857"
+cicd_conf = {
+  github_owner            = "Sanved12"
+  github_repo             = "terraform-infra"
+  github_branch           = "main"
+  pipeline_bucket         = "sanved-pipeline-artifacts"
+  codestar_connection_arn = "arn:aws:codeconnections:us-east-1:168312023901:connection/170b7e94-c0e9-423c-a201-9386ccd5c857"
+  tf_version              = "1.7.5"
+}
 
 ##hlooo
 ##hskdk
