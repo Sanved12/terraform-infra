@@ -9,7 +9,9 @@
 crash.log
 crash.*.log
 
-# tfvars committed directly to repo
+# tfvars — may contain sensitive values
+terraform.tfvars
+*.tfvars
 
 # Windows Zone.Identifier metadata files
 *:Zone.Identifier
