@@ -25,3 +25,9 @@ variable "target_group_arn" {
 variable "ec2_conf" {
   description = "EC2 related configuration for the creation of EC2 instances, Security Group, Key Pair, Root Volume etc"
 }
+
+variable "common_tags" {
+  description = "Common tags applied to all resources"
+  type        = map(string)
+  default     = {}
+}
