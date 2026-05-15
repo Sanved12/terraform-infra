@@ -24,5 +24,6 @@ variable "ec2_conf" {
 
 variable "common_tags" {
   description = "Common tags applied to all resources"
+  type        = map(string)
   default     = {}
 }
