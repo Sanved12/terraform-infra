@@ -1,5 +1,5 @@
 //========== Common Global Variables ===========//
-region      = "ap-south-1" # AWS region where the resources will be created
+region      = "ap-south-1" 
 environment = "test"
 
 //=======================================================================================================\\
@@ -18,6 +18,8 @@ s3_conf = {
 # The number of subnet CIDRs provided equals the number of subnets created in subsequent AZs of the selected region.
 
 vpc_conf = {
+
+  availability_zones = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
 
   # VPC CIDR and tags
   vpc = {
@@ -128,6 +130,3 @@ cicd_conf = {
   tf_version              = "1.7.5"
 }
 
-##hlooo
-##hskdk
-#3gdhuhjkdldio
