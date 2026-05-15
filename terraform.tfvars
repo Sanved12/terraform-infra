@@ -19,8 +19,6 @@ s3_conf = {
 
 vpc_conf = {
 
-  availability_zones = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
-
   # VPC CIDR and tags
   vpc = {
     cidr_vpc = "10.0.0.0/16"
