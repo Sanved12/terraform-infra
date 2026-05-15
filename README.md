@@ -77,8 +77,7 @@ region      = "ap-south-1"
 environment = "dev"
 
 s3_conf = {
-  bucket_name    = "your-terraform-state-bucket"
-  dynamodb_table = "your-terraform-locks-table"
+  bucket_name = "your-terraform-state-bucket"
 }
 
 vpc_conf = {
@@ -148,11 +147,11 @@ Replace the `backend "s3"` block values with your state bucket name and DynamoDB
 
 ```hcl
 backend "s3" {
-  bucket         = "your-terraform-state-bucket"
-  key            = "env/terraform.tfstate"
-  region         = "ap-south-1"
-  dynamodb_table = "your-terraform-locks-table"
-  encrypt        = true
+  bucket       = "your-terraform-state-bucket"
+  key          = "env/terraform.tfstate"
+  region       = "ap-south-1"
+  use_lockfile = true
+  encrypt      = true
 }
 ```
 

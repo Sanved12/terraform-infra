@@ -15,7 +15,7 @@ variable "environment" {
 #========== S3 Backend ==========#
 
 variable "s3_conf" {
-  description = "S3 state backend bucket and DynamoDB lock table configuration"
+  description = "S3 state backend bucket configuration"
 }
 
 #========== VPC ==========#

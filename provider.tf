@@ -13,11 +13,11 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "sanved-bucket"
-    key            = "test/terraform.tfstate"
-    region         = "ap-south-1"
-    dynamodb_table = "sanved-bucket-locks"
-    encrypt        = true
+    bucket       = "sanved-bucket"
+    key          = "test/terraform.tfstate"
+    region       = "ap-south-1"
+    use_lockfile = true
+    encrypt      = true
   }
 }
 
