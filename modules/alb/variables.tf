@@ -13,3 +13,8 @@ variable "public_subnet_ids" {
 variable "alb_conf" {
   description = "ALB related configuration for the creation of ALB, Target Group, Listener, Security Group etc"
 }
+
+variable "common_tags" {
+  description = "Common tags applied to all resources"
+  default     = {}
+}

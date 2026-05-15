@@ -1,6 +1,11 @@
 //========== Common Global Variables ===========//
-region      = "ap-south-1" 
+region      = "ap-south-1"
 environment = "test"
+
+//========== Common Tags ===========//
+common_tags = {
+  Owner = "sanved"
+}
 
 //=======================================================================================================\\
 //                                       S3 State Backend Configuration                                  \\
@@ -18,20 +23,13 @@ s3_conf = {
 
 vpc_conf = {
 
-  # VPC CIDR and tags
+  # VPC CIDR
   vpc = {
     cidr_vpc = "10.0.0.0/16"
-    additional_tags = {
-      Owner = "sanved"
-    }
   }
 
-  # NAT Gateway tags
-  nat_gateway = {
-    additional_tags = {
-      Owner = "sanved"
-    }
-  }
+  # NAT Gateway
+  nat_gateway = {}
 
   subnets = {
 
@@ -43,10 +41,6 @@ vpc_conf = {
         "10.0.16.0/20",
         "10.0.32.0/20",
       ]
-      additional_tags = {
-        Owner = "sanved"
-        Tier  = "public-subnet"
-      }
     }
 
     # Private app subnets — one per AZ
@@ -57,10 +51,6 @@ vpc_conf = {
         "10.0.64.0/20",
         "10.0.80.0/20",
       ]
-      additional_tags = {
-        Owner = "sanved"
-        Tier  = "private-app-subnet"
-      }
     }
 
     # Private DB subnets — isolated, no route to internet
@@ -71,10 +61,6 @@ vpc_conf = {
         "10.0.112.0/20",
         "10.0.128.0/20"
       ]
-      additional_tags = {
-        Owner = "sanved"
-        Tier  = "private-db-subnet"
-      }
     }
   }
 }
@@ -85,9 +71,6 @@ vpc_conf = {
 
 alb_conf = {
   enable_deletion_protection = false
-  additional_tags = {
-    Owner = "sanved"
-  }
   target_group = {
     port              = 80
     protocol          = "HTTP"
@@ -105,9 +88,6 @@ ec2_conf = {
   instance_count = 2
   app_port       = 80
   public_key     = ""
-  additional_tags = {
-    Owner = "sanved"
-  }
   root_volume = {
     type    = "gp3"
     size_gb = 20
@@ -126,4 +106,3 @@ cicd_conf = {
   codestar_connection_arn = "arn:aws:codeconnections:us-east-1:168312023901:connection/170b7e94-c0e9-423c-a201-9386ccd5c857"
   tf_version              = "1.10.3"
 }
-

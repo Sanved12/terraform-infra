@@ -12,6 +12,13 @@ variable "environment" {
   description = "Environment name (e.g. poc, dev, staging, prod)"
 }
 
+#========== Common Tags ==========#
+
+variable "common_tags" {
+  description = "Common tags applied to all resources"
+  default     = {}
+}
+
 #========== S3 Backend ==========#
 
 variable "s3_conf" {

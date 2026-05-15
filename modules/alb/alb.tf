@@ -35,7 +35,7 @@ resource "aws_security_group" "alb_sg" {
       "Name"        = "${var.environment}-alb-sg"
       "Environment" = var.environment
     },
-    var.alb_conf.additional_tags
+    var.common_tags
   )
 }
 
@@ -56,7 +56,7 @@ resource "aws_lb" "alb" {
       "Name"        = "${var.environment}-alb"
       "Environment" = var.environment
     },
-    var.alb_conf.additional_tags
+    var.common_tags
   )
 }
 
@@ -87,7 +87,7 @@ resource "aws_lb_target_group" "tg" {
       "Name"        = "${var.environment}-tg"
       "Environment" = var.environment
     },
-    var.alb_conf.additional_tags
+    var.common_tags
   )
 }
 

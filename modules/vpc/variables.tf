@@ -9,3 +9,8 @@ variable "environment" {
 variable "vpc_conf" {
   description = "Network resources related configuration for the creation of VPC, Subnets, Internet Gateway, NAT gateway, Route table etc"
 }
+
+variable "common_tags" {
+  description = "Common tags applied to all resources"
+  default     = {}
+}

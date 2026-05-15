@@ -14,7 +14,7 @@ resource "aws_vpc" "vpc" {
       "Name"        = "${var.environment}-vpc"
       "Environment" = var.environment
     },
-    var.vpc_conf.vpc.additional_tags
+    var.common_tags
   )
 }
 
@@ -31,8 +31,9 @@ resource "aws_subnet" "public_subnets" {
     {
       Name        = "${var.environment}-${var.vpc_conf.subnets.public_subnets.name}-${count.index}"
       Environment = var.environment
+      Tier        = "public-subnet"
     },
-    var.vpc_conf.subnets.public_subnets.additional_tags
+    var.common_tags
   )
 }
 
@@ -97,7 +98,7 @@ resource "aws_nat_gateway" "ngwA" {
       "Name"        = "${var.environment}-NAT-GW"
       "Environment" = var.environment
     },
-    var.vpc_conf.nat_gateway.additional_tags
+    var.common_tags
   )
 }
 
@@ -113,8 +114,9 @@ resource "aws_subnet" "private_app_subnets" {
     {
       Name        = "${var.environment}-${var.vpc_conf.subnets.private_app_subnets.name}-${count.index}"
       Environment = var.environment
+      Tier        = "private-app-subnet"
     },
-    var.vpc_conf.subnets.private_app_subnets.additional_tags
+    var.common_tags
   )
 }
 
@@ -161,8 +163,9 @@ resource "aws_subnet" "private_db_subnets" {
     {
       Name        = "${var.environment}-${var.vpc_conf.subnets.private_db_subnets.name}-${count.index}"
       Environment = var.environment
+      Tier        = "private-db-subnet"
     },
-    var.vpc_conf.subnets.private_db_subnets.additional_tags
+    var.common_tags
   )
 }
 

@@ -15,6 +15,7 @@ module "vpc" {
   region      = var.region
   environment = var.environment
   vpc_conf    = var.vpc_conf
+  common_tags = var.common_tags
 }
 
 //=======================================================================================================\\
@@ -26,6 +27,7 @@ module "alb" {
   vpc_id            = module.vpc.vpc_id
   public_subnet_ids = module.vpc.public_subnet_ids
   alb_conf          = var.alb_conf
+  common_tags       = var.common_tags
 
   depends_on = [module.vpc]
 }
@@ -41,6 +43,7 @@ module "ec2" {
   alb_security_group_id  = module.alb.alb_security_group_id
   target_group_arn       = module.alb.target_group_arn
   ec2_conf               = var.ec2_conf
+  common_tags            = var.common_tags
 
   depends_on = [module.vpc, module.alb]
 }

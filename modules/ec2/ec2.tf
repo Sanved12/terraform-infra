@@ -27,7 +27,7 @@ resource "aws_security_group" "ec2_sg" {
       "Name"        = "${var.environment}-ec2-sg"
       "Environment" = var.environment
     },
-    var.ec2_conf.additional_tags
+    var.common_tags
   )
 }
 
@@ -44,7 +44,7 @@ resource "aws_key_pair" "ec2_key" {
       "Name"        = "${var.environment}-ec2-key"
       "Environment" = var.environment
     },
-    var.ec2_conf.additional_tags
+    var.common_tags
   )
 }
 
@@ -82,7 +82,7 @@ resource "aws_instance" "app_servers" {
       "Name"        = "${var.environment}-app-server-${count.index + 1}"
       "Environment" = var.environment
     },
-    var.ec2_conf.additional_tags
+    var.common_tags
   )
 }
 
