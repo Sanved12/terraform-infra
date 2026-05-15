@@ -1,3 +1,7 @@
+//=======================================================================================================\\
+//                                         ALB Variables                                                 \\
+//=======================================================================================================\\
+
 variable "environment" {
   description = "Environment name (e.g. poc, dev, staging, prod)"
 }
@@ -12,10 +16,4 @@ variable "public_subnet_ids" {
 
 variable "alb_conf" {
   description = "ALB related configuration for the creation of ALB, Target Group, Listener, Security Group etc"
-}
-
-variable "common_tags" {
-  description = "Common tags applied to all resources"
-  type        = map(string)
-  default     = {}
 }
